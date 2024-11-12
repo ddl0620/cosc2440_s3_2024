@@ -1,16 +1,50 @@
-public class Property {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Property implements Serializable {
     private String propertyId;
     private Address address;
     private int price;
     private double area;
     private PropertyStatus status;
+    private Owner owner;
+    private List<Host> hosts;
 
-    public Property(String propertyId, Address address, int price, double area, PropertyStatus status) {
+    public Property(String propertyId, Owner owner ,Address address, int price, double area, PropertyStatus status, List<Host> hosts) {
         this.propertyId = propertyId;
+        this.owner = owner;
         this.address = address;
         this.price = price;
         this.area = area;
         this.status = status;
+        this.hosts = hosts;
+    }
+
+    public Property(String propertyId, Owner owner ,Address address, int price, double area, PropertyStatus status) {
+        this.propertyId = propertyId;
+        this.owner = owner;
+        this.address = address;
+        this.price = price;
+        this.area = area;
+        this.status = status;
+        this.hosts = new ArrayList<>();
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    public List<Host> getHosts() {
+        return hosts;
+    }
+
+    public void setHosts(List<Host> hosts) {
+        this.hosts = hosts;
     }
 
     public String getPropertyId() {
@@ -51,6 +85,10 @@ public class Property {
 
     public void setArea(double area) {
         this.area = area;
+    }
+
+    public void addHost(Host host) {
+        hosts.add(host);
     }
 
 }

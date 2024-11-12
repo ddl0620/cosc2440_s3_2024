@@ -1,8 +1,11 @@
-public class CommercialProperty extends Property{
+import java.io.Serializable;
+import java.util.List;
+
+public class CommercialProperty extends Property implements Serializable {
     private String businessType;
     private int numberOfParkingSpaces;
-    public CommercialProperty(String propertyId, Address address, int price, double area, PropertyStatus status, String businessType, int numberOfParkingSpaces) {
-        super(propertyId, address, price, area, status);
+    public CommercialProperty(String propertyId, Owner owner, Address address, int price, double area, PropertyStatus status, List<Host> hosts, String businessType, int numberOfParkingSpaces) {
+        super(propertyId, owner ,address, price, area, status, hosts);
         this.businessType = businessType;
         this.numberOfParkingSpaces = numberOfParkingSpaces;
     }

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Payment {
+public class Payment implements Serializable {
     private double amount;
     private LocalDate paymentDate;
     private String paymentMethod;

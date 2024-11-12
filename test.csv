@@ -1,3 +1,0 @@
-AgreementId, mainTenant, subTenants, propertyLeasedId, paymentPeriod, contractDate, rentingFee, agreementStatus
-1,John Doe,Jane Cass;Alice Bob,1,Monthly,01-01-2020,1000.0,Active
-2,Bob Alice,Cass Jane;Doe John,2,Monthly,02-02-2020,2000.0,Active

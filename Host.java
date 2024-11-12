@@ -1,14 +1,18 @@
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Host extends Person{
-    private List<Property> propertiesHosted = new ArrayList<Property>();
-    private List<Owner> ownersCollaborated = new ArrayList<Owner>();
-    private List<RentalAgreement> rentalAgreementsManaged = new ArrayList<RentalAgreement>();
+public class Host extends Person implements Serializable {
+    private List<Property> propertiesHosted;
+    private List<Owner> ownersCollaborated;
+    private List<RentalAgreement> rentalAgreementsManaged;
 
     public Host(String id, String fullName, LocalDate dateOfBirth, String phoneNumber, String email) {
         super(id, fullName, dateOfBirth, phoneNumber, email);
+        propertiesHosted = new ArrayList<Property>();
+        ownersCollaborated = new ArrayList<Owner>();
+        rentalAgreementsManaged = new ArrayList<RentalAgreement>();
     }
 
     public List<Property> getPropertiesHosted() {
@@ -17,6 +21,10 @@ public class Host extends Person{
 
     public void setPropertiesHosted(List<Property> propertiesHosted) {
         this.propertiesHosted = propertiesHosted;
+    }
+
+    public void addNewPropertyHosted(Property p1) {
+        this.propertiesHosted.add(p1);
     }
 
     public List<Owner> getOwnersCollaborated() {
@@ -34,4 +42,17 @@ public class Host extends Person{
     public void setRentalAgreementsManaged(List<RentalAgreement> rentalAgreementsManaged) {
         this.rentalAgreementsManaged = rentalAgreementsManaged;
     }
+
+    public void addNewRentalAgreement(RentalAgreement ra) {
+        this.rentalAgreementsManaged.add(ra);
+    }
+
+    public void removeRentalAgreementById(String Id) {
+        this.rentalAgreementsManaged.removeIf(ra -> ra.getAgreementId().equals(Id));
+    }
+
+    public void addOwnersCollaborated(Owner owner) {
+        this.ownersCollaborated.add(owner);
+    }
+
 }

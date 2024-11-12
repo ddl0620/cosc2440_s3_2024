@@ -1,10 +1,20 @@
-public class ResidentalProperty extends Property{
+import java.io.Serializable;
+import java.util.List;
+
+public class ResidentialProperty extends Property implements Serializable {
     private int numberOfBedrooms;
     private boolean garageAvailability;
     private boolean gardenAvailability;
 
-    public ResidentalProperty(String propertyId, Address address, int price, double area, PropertyStatus status, int numberOfBedrooms, boolean garageAvailability, boolean gardenAvailability) {
-        super(propertyId, address, price, area, status);
+    public ResidentialProperty(String propertyId, Owner owner, Address address, int price, double area, PropertyStatus status, int numberOfBedrooms, boolean garageAvailability, boolean gardenAvailability, List<Host> hosts) {
+        super(propertyId, owner ,address, price, area, status, hosts);
+        this.numberOfBedrooms = numberOfBedrooms;
+        this.garageAvailability = garageAvailability;
+        this.gardenAvailability = gardenAvailability;
+    }
+
+    public ResidentialProperty(String propertyId, Owner owner, Address address, int price, double area, PropertyStatus status, int numberOfBedrooms, boolean garageAvailability, boolean gardenAvailability) {
+        super(propertyId, owner ,address, price, area, status);
         this.numberOfBedrooms = numberOfBedrooms;
         this.garageAvailability = garageAvailability;
         this.gardenAvailability = gardenAvailability;

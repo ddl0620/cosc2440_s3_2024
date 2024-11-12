@@ -1,43 +1,155 @@
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.ObjectOutputStream;
 
 public class Test {
 
     public static void main(String[] args) {
+
+        Owner owner1 = new Owner("abc123", "Alice Ada", LocalDate.of(1990, 6, 6), "0910123456", "aliceada@example.com");
+        Owner owner2 = new Owner("def456", "Bob Brown", LocalDate.of(1985, 8, 15), "0922233445", "bobbrown@example.com");
+        Owner owner3 = new Owner("ghi789", "Charlie Clark", LocalDate.of(1992, 12, 12), "0933344556", "charlieclark@example.com");
+        Owner owner4 = new Owner("jkl012", "Daisy Duke", LocalDate.of(1988, 4, 25), "0944455667", "daisyduke@example.com");
+        Owner owner5 = new Owner("mno345", "Edward Elric", LocalDate.of(1995, 10, 30), "0955566778", "edwardelric@example.com");
+
+        Host host1 = new Host("pqr678", "Fiona Frost", LocalDate.of(1987, 3, 14), "0966677889", "fionafrost@example.com");
+        Host host2 = new Host("stu901", "George Green", LocalDate.of(1991, 7, 22), "0977788990", "georgegreen@example.com");
+        Host host3 = new Host("vwx234", "Hannah Hall", LocalDate.of(1984, 11, 18), "0988899001", "hannahhall@example.com");
+        Host host4 = new Host("yzb567", "Ivan Iron", LocalDate.of(1993, 9, 5), "0999900112", "ivaniron@example.com");
+        Host host5 = new Host("abc890", "Julia Jewel", LocalDate.of(1989, 5, 27), "0900011223", "juliajewel@example.com");
+
+        Tenant tenant1 = new Tenant("tnt123", "Liam Lane", LocalDate.of(1992, 2, 3), "0911222333", "liamlane@example.com");
+        Tenant tenant2 = new Tenant("tnt456", "Mia Moore", LocalDate.of(1988, 6, 19), "0922333444", "miamoore@example.com");
+        Tenant tenant3 = new Tenant("tnt789", "Noah Neal", LocalDate.of(1995, 10, 11), "0933444555", "noahneal@example.com");
+        Tenant tenant4 = new Tenant("tnt012", "Olivia Oak", LocalDate.of(1989, 12, 24), "0944555666", "oliviaoak@example.com");
+        Tenant tenant5 = new Tenant("tnt345", "Pauline Page", LocalDate.of(1993, 4, 5), "0955666777", "paulinepage@example.com");
+
+
+        ResidentialProperty property1 = new ResidentialProperty(
+                "prop101",
+                owner1,
+                new Address("123 Main St", "Springfield", "CA", "90210", "112"),
+                350000,
+                2500.0,
+                PropertyStatus.AVAILABLE,
+                3,
+                true,
+                false
+        );
+
+        ResidentialProperty property2 = new ResidentialProperty(
+                "prop102",
+                owner2,
+                new Address("456 Maple Ave", "Riverdale", "NY", "10001", "110"),
+                450000,
+                3000.0,
+                PropertyStatus.AVAILABLE,
+                4,
+                true,
+                true
+        );
+
+        ResidentialProperty property3 = new ResidentialProperty(
+                "prop103",
+                owner3,
+                new Address("789 Oak Dr", "Hill Valley", "TX", "75001", "111"),
+                500000,
+                3500.0,
+                PropertyStatus.AVAILABLE,
+                5,
+                false,
+                true
+        );
+
+        ResidentialProperty property4 = new ResidentialProperty(
+                "prop104",
+                owner4,
+                new Address("321 Pine St", "Twin Peaks", "WA", "98001", "115"),
+                275000,
+                2200.0,
+                PropertyStatus.AVAILABLE,
+                2,
+                true,
+                false
+        );
+
+        ResidentialProperty property5 = new ResidentialProperty(
+                "prop105",
+                owner5,
+                new Address("654 Elm St", "Sunnydale", "CA", "90002", "0606"),
+                375000,
+                2800.0,
+                PropertyStatus.AVAILABLE,
+                3,
+                false,
+                true
+        );
+
+        List<Host> h1 = new ArrayList<>();
+        h1.add(host1);
+        h1.add(host2);
+
+        List<Tenant> st1 = new ArrayList<>();
+        st1.add(tenant2);
+        st1.add(tenant3);
+
+        RentalAgreement ra1 = new RentalAgreement(
+                "ra001",
+                owner1,
+                h1,
+                tenant1,
+                st1,
+                property1,
+                PaymentPeriod.MONTHLY,
+                LocalDate.of(2024, 12, 11),
+                2999.99,
+                RentalAgreementStatus.ACTIVE
+        );
+
+        owner1.addHostsCollaborated(host1);
+        owner1.addHostsCollaborated(host2);
+        owner1.addNewRentalAgreementMade(ra1);
+
+        host1.addOwnersCollaborated(owner1);
+        host1.addNewRentalAgreement(ra1);
+        host1.addNewPropertyHosted(ra1.getPropertyLeased());
+
+        host2.addOwnersCollaborated(owner1);
+        host2.addNewRentalAgreement(ra1);
+        host2.addNewPropertyHosted(ra1.getPropertyLeased());
+
+        tenant1.addRentalAgreement(ra1);
+        tenant2.addRentalAgreement(ra1);
+        tenant3.addRentalAgreement(ra1);
+
+        property1.addHost(host1);
+        property1.addHost(host2);
+        property1.setStatus(PropertyStatus.RENTED);
+
         try {
-            Tenant t1 = new Tenant("1", "John Doe", LocalDate.of(1990, 1, 1), "123456789", "jd@gmail.com");
-            Tenant t2 = new Tenant("2", "Jane Cass", LocalDate.of(1995, 2, 2), "987654321", "jc@gmail.com");
-            Tenant t3 = new Tenant("3", "Alice Bob", LocalDate.of(2000, 3, 3), "456789123", "ab@gmail.com");
-            Tenant t4 = new Tenant("4", "Bob Alice", LocalDate.of(2005, 4, 4), "789123456", "ba@gmail.com");
-            Tenant t5 = new Tenant("5", "Cass Jane", LocalDate.of(2010, 5, 5), "321654987", "cj@gmail.com");
-            Tenant t6 = new Tenant("6", "Doe John", LocalDate.of(2015, 6, 6), "654987321", "dj@gmail.com");
+            File file = new File("file.data");
+            OutputStream os = new FileOutputStream(file);
+            ObjectOutputStream objos = new ObjectOutputStream(os);
 
-            List<Tenant> coTenants1 = new ArrayList<Tenant>();
-            coTenants1.add(t2);
-            coTenants1.add(t3);
+            objos.writeObject(owner1);
+            objos.writeObject(host1);
+            objos.writeObject(host2);
+            objos.writeObject(tenant1);
+            objos.writeObject(tenant2);
+            objos.writeObject(tenant3);
+            objos.writeObject(property1);
+            objos.writeObject(ra1);
 
-            List<Tenant> coTenants2 = new ArrayList<Tenant>();
-            coTenants2.add(t5);
-            coTenants2.add(t6);
+            objos.flush();
+            objos.close();
 
-            CommercialProperty cp1 = new CommercialProperty("1", new Address("Hanoi", "Ba Dinh", "Ngoc Ha", "Hoang Hoa Tham", "178/173"), 1000, 1000, PropertyStatus.AVAILABLE, "Business1", 10);
-            ResidentalProperty rp1 = new ResidentalProperty("2", new Address("Hanoi", "Thanh Xuan", "Nhan Chinh", "Le Van Luong", "21"), 2000, 2000, PropertyStatus.AVAILABLE, 3, true, true);
-
-            RentalAgreement ra1 = new RentalAgreement("1", t1, coTenants1, cp1, "Monthly", LocalDate.of(2020, 1, 1), 1000, "Active");
-            RentalAgreement ra2 = new RentalAgreement("2", t4, coTenants2, rp1, "Monthly", LocalDate.of(2020, 2, 2), 2000, "Active");
-
-            List<RentalAgreement> RentalAgreementsList = new ArrayList<>();
-            RentalAgreementsList.add(ra1);
-            RentalAgreementsList.add(ra2);
-
-
-            String filePath = "test.csv";
-            RentalAgreementCsvWriter.writeRentalArgumentToCsv(RentalAgreementsList, filePath);
         }
-        catch (IOException e) {
-            System.out.println("Error");
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
 
