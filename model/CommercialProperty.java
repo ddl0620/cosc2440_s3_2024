@@ -1,3 +1,5 @@
+package model;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,6 +11,13 @@ public class CommercialProperty extends Property implements Serializable {
         this.businessType = businessType;
         this.numberOfParkingSpaces = numberOfParkingSpaces;
     }
+
+    public CommercialProperty(String propertyId, Owner owner, Address address, int price, double area, PropertyStatus status, String businessType, int numberOfParkingSpaces) {
+        super(propertyId, owner ,address, price, area, status);
+        this.businessType = businessType;
+        this.numberOfParkingSpaces = numberOfParkingSpaces;
+    }
+
     public String getBusinessType() {
         return businessType;
     }
@@ -21,4 +30,5 @@ public class CommercialProperty extends Property implements Serializable {
     public void setNumberOfParkingSpaces(int numberOfParkingSpaces) {
         this.numberOfParkingSpaces = numberOfParkingSpaces;
     }
+
 }

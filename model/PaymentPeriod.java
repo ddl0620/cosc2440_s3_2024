@@ -1,11 +1,15 @@
-public enum RentalAgreementStatus {
-    NEW("New"),
-    ACTIVE("Active"),
-    COMPLETED("Completed");
+package model;
+
+public enum PaymentPeriod {
+    DAILY("Daily"),
+    WEEKLY("Weekly"),
+    FORTNIGHTLY("Fortnightly"),
+    MONTHLY("Monthly"),
+    YEARLY("Yearly");
 
     private final String statusName;
 
-    RentalAgreementStatus(String statusName) {
+    PaymentPeriod(String statusName) {
         this.statusName = statusName;
     }
 

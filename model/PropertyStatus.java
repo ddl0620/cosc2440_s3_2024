@@ -1,3 +1,5 @@
+package model;
+
 public enum PropertyStatus {
     AVAILABLE("Available"),
     RENTED("Rented"),

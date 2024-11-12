@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.ObjectOutputStream;
+import model.*
 
 public class Test {
 
@@ -87,13 +88,33 @@ public class Test {
                 true
         );
 
+
+        CommercialProperty property6 = new CommercialProperty(
+                "prop106",
+                owner1,
+                new Address("Hanoi", "Thanh Xuan", "Nhan Chinh", "Le Van Luong", "21/708"),
+                88000,
+                1788.99,
+                PropertyStatus.AVAILABLE,
+                "Culinary",
+                12
+        );
+
         List<Host> h1 = new ArrayList<>();
         h1.add(host1);
         h1.add(host2);
 
+        List<Host> h2 = new ArrayList<>();
+        h2.add(host1);
+        h1.add(host3);
+
         List<Tenant> st1 = new ArrayList<>();
         st1.add(tenant2);
         st1.add(tenant3);
+
+        List<Tenant> st2 = new ArrayList<>();
+        st2.add(tenant1);
+        st2.add(tenant3);
 
         RentalAgreement ra1 = new RentalAgreement(
                 "ra001",
@@ -108,25 +129,71 @@ public class Test {
                 RentalAgreementStatus.ACTIVE
         );
 
+
+        RentalAgreement ra2 = new RentalAgreement(
+                "ra002",
+                owner1,
+                h2,
+                tenant2,
+                st2,
+                property6,
+                PaymentPeriod.YEARLY,
+                LocalDate.of(2024, 6, 6),
+                3999.99,
+                RentalAgreementStatus.ACTIVE
+        );
+
         owner1.addHostsCollaborated(host1);
         owner1.addHostsCollaborated(host2);
+        owner1.addHostsCollaborated(host3);
         owner1.addNewRentalAgreementMade(ra1);
 
         host1.addOwnersCollaborated(owner1);
         host1.addNewRentalAgreement(ra1);
+        host1.addNewRentalAgreement(ra2);
         host1.addNewPropertyHosted(ra1.getPropertyLeased());
+        host1.addNewPropertyHosted(ra2.getPropertyLeased());
 
         host2.addOwnersCollaborated(owner1);
         host2.addNewRentalAgreement(ra1);
+        host2.addNewRentalAgreement(ra2);
         host2.addNewPropertyHosted(ra1.getPropertyLeased());
+        host2.addNewPropertyHosted(ra2.getPropertyLeased());
+
+        host3.addOwnersCollaborated(owner1);
+        host3.addNewRentalAgreement(ra2);
+        host3.addNewPropertyHosted(ra2.getPropertyLeased());
 
         tenant1.addRentalAgreement(ra1);
+        tenant1.addRentalAgreement(ra2);
+
         tenant2.addRentalAgreement(ra1);
+        tenant2.addRentalAgreement(ra2);
+
         tenant3.addRentalAgreement(ra1);
+        tenant3.addRentalAgreement(ra2);
 
         property1.addHost(host1);
         property1.addHost(host2);
         property1.setStatus(PropertyStatus.RENTED);
+
+        property6.addHost(host1);
+        property6.addHost(host3);
+
+        Database db = new Database();
+        db.addOwnerToDatabase(owner1);
+        db.addHostToDatabase(host1);
+        db.addHostToDatabase(host2);
+        db.addHostToDatabase(host3);
+        db.addTenantToDatabase(tenant1);
+        db.addTenantToDatabase(tenant2);
+        db.addTenantToDatabase(tenant3);
+        db.addResidentialPropertyToDatabase(property1);
+        db.addCommercialPropertyToDatabase(property6);
+        db.addRentalAgreementToDatabase(ra1);
+        db.addRentalAgreementToDatabase(ra2);
+
+
 
         try {
             File file = new File("file.data");
@@ -141,6 +208,7 @@ public class Test {
             objos.writeObject(tenant3);
             objos.writeObject(property1);
             objos.writeObject(ra1);
+            objos.writeObject(db);
 
             objos.flush();
             objos.close();
