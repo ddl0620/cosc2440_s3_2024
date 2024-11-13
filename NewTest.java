@@ -9,24 +9,24 @@ public class NewTest {
             InputStream is = new FileInputStream(file);
             ObjectInputStream objis = new ObjectInputStream(is);
 
-            Owner owner1 = (Owner) objis.readObject();
-
-            Host host1 = (Host) objis.readObject();
-            Host host2 = (Host) objis.readObject();
-
-            Tenant tenant1 = (Tenant) objis.readObject();
-            Tenant tenant2 = (Tenant) objis.readObject();
-            Tenant tenant3 = (Tenant) objis.readObject();
-
-            ResidentialProperty property1 = (ResidentialProperty) objis.readObject();
-
-            RentalAgreement ra1 = (RentalAgreement) objis.readObject();
+//            Owner owner1 = (Owner) objis.readObject();
+//
+//            Host host1 = (Host) objis.readObject();
+//            Host host2 = (Host) objis.readObject();
+//
+//            Tenant tenant1 = (Tenant) objis.readObject();
+//            Tenant tenant2 = (Tenant) objis.readObject();
+//            Tenant tenant3 = (Tenant) objis.readObject();
+//
+//            ResidentialProperty property1 = (ResidentialProperty) objis.readObject();
+//
+//            RentalAgreement ra1 = (RentalAgreement) objis.readObject();
 
             Database db = (Database) objis.readObject();
 
-            System.out.println(ra1.getHosts().get(0).getRentalAgreementsManaged().getFirst().getAgreementId());
-            System.out.println(ra1.getHosts().get(1).getRentalAgreementsManaged().getFirst().getAgreementId());
-            System.out.println(host1.getOwnersCollaborated().getFirst().getRentalAgreementsMade().getFirst().getHosts().get(1).getFullName());
+//            System.out.println(ra1.getHosts().get(0).getRentalAgreementsManaged().getFirst().getAgreementId());
+//            System.out.println(ra1.getHosts().get(1).getRentalAgreementsManaged().getFirst().getAgreementId());
+//            System.out.println(host1.getOwnersCollaborated().getFirst().getRentalAgreementsMade().getFirst().getHosts().get(1).getFullName());
 
             System.out.println(db.getResidentialPropertiesList().getFirst().getHosts().getFirst().getOwnersCollaborated().getFirst().getFullName());
 

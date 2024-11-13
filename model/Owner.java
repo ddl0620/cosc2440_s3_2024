@@ -14,7 +14,7 @@ public class Owner extends Person implements Serializable {
 
     public Owner(String id, String fullName, LocalDate dateOfBirth, String phoneNumber, String email) {
         super(id, fullName, dateOfBirth, phoneNumber, email);
-        List<Property> propertiesOwned = new ArrayList<Property>();
+        propertiesOwned = new ArrayList<Property>();
         hostsCollaborated = new ArrayList<Host>();
         rentalAgreementsMade = new ArrayList<RentalAgreement>();
     }

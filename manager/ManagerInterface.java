@@ -1,8 +1,10 @@
+package manager;
+
 import java.util.List;
 
-public interface ManagerInterface {
+public interface ManagerInterface<T> {
     boolean add();
     boolean update();
     boolean remove();
-    List<?> get();
+    List<T> get();
 }

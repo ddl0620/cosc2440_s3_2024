@@ -2,7 +2,9 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Database implements Serializable {
     private List<Owner> ownersList = new ArrayList<>();
@@ -11,6 +13,7 @@ public class Database implements Serializable {
     private List<ResidentialProperty> residentialPropertiesList = new ArrayList<>();
     private List<CommercialProperty> commercialPropertiesList = new ArrayList<>();
     private List<RentalAgreement> rentalAgreementsList = new ArrayList<>();
+    private static Map<Integer, Integer> IdMap = new HashMap<>();
 
     public void addOwnerToDatabase(Owner owner) {
         this.ownersList.add(owner);
@@ -70,5 +73,14 @@ public class Database implements Serializable {
 
     public List<RentalAgreement> getRentalAgreementsList() {
         return rentalAgreementsList;
+    }
+
+    public static int generateId() {
+        int id;
+        do {
+            id = Math.abs(new java.util.Random().nextInt() % 1000);
+        } while (IdMap.containsKey(id) && IdMap.get(id) == 1);
+        IdMap.put(id, 1);
+        return id;
     }
 }

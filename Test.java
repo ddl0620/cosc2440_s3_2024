@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.ObjectOutputStream;
-import model.*
+import model.*;
 
 public class Test {
 
@@ -200,14 +200,14 @@ public class Test {
             OutputStream os = new FileOutputStream(file);
             ObjectOutputStream objos = new ObjectOutputStream(os);
 
-            objos.writeObject(owner1);
-            objos.writeObject(host1);
-            objos.writeObject(host2);
-            objos.writeObject(tenant1);
-            objos.writeObject(tenant2);
-            objos.writeObject(tenant3);
-            objos.writeObject(property1);
-            objos.writeObject(ra1);
+//            objos.writeObject(owner1);
+//            objos.writeObject(host1);
+//            objos.writeObject(host2);
+//            objos.writeObject(tenant1);
+//            objos.writeObject(tenant2);
+//            objos.writeObject(tenant3);
+//            objos.writeObject(property1);
+//            objos.writeObject(ra1);
             objos.writeObject(db);
 
             objos.flush();
