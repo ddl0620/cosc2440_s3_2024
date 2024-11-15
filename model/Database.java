@@ -52,15 +52,15 @@ public class Database implements Serializable {
     }
 
     public List<Owner> getOwnersList() {
-        return ownersList;
+        return this.ownersList;
     }
 
     public List<Host> getHostsList() {
-        return hostsList;
+        return this.hostsList;
     }
 
     public List<Tenant> getTenantsList() {
-        return tenantsList;
+        return this.tenantsList;
     }
 
     public List<ResidentialProperty> getResidentialPropertiesList() {

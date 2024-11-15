@@ -39,16 +39,51 @@ public class TenantManager implements ManagerInterface <Tenant>{
 
     @Override
     public boolean update() {
-        return false;
+        for (Tenant tenant : db.getTenantsList()) {
+            System.out.printf("%s %s\n", tenant.getId(), tenant.getFullName());
+        }
+        System.out.println("Enter tenant id: ");
+        String id = scanner.nextLine();
+        Tenant tenant = db.getTenantsList().stream().filter(o -> o.getId().equals(id)).findFirst().orElse(null);
+        if (tenant == null) {
+            System.out.println("Tenant not found");
+            return false;
+        }
+        System.out.println("Enter new tenant name: ");
+        String name = scanner.nextLine();
+        System.out.println("Enter new tenant date of birth (dd/MM/yyyy): ");
+        String dob = scanner.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = LocalDate.parse(dob, formatter);
+        System.out.println("Enter new tenant phone number: ");
+        String phone = scanner.nextLine();
+        System.out.println("Enter new tenant email: ");
+        String email = scanner.nextLine();
+        tenant.setFullName(name);
+        tenant.setDateOfBirth(date);
+        tenant.setPhoneNumber(phone);
+        tenant.setEmail(email);
+        return true;
     }
 
     @Override
     public boolean remove() {
-        return false;
+        for (Tenant tenant : db.getTenantsList()) {
+            System.out.printf("%s %s\n", tenant.getId(), tenant.getFullName());
+        }
+        System.out.println("Enter tenant id: ");
+        String id = scanner.nextLine();
+        Tenant tenant = db.getTenantsList().stream().filter(o -> o.getId().equals(id)).findFirst().orElse(null);
+        if (tenant == null) {
+            System.out.println("Tenant not found");
+            return false;
+        }
+        db.getTenantsList().remove(tenant);
+        return true;
     }
 
     @Override
     public List<Tenant> get() {
-        return List.of();
+        return db.getTenantsList();
     }
 }

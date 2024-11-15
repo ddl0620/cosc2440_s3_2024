@@ -79,7 +79,7 @@ public class OwnerManager implements ManagerInterface <Owner> {
             return false;
         }
         db.getOwnersList().remove(owner);
-        return false;
+        return true;
     }
 
     @Override

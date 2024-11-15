@@ -16,10 +16,11 @@ public class Application {
             managerInterface.remove();
         } else if (opt == 4) {
             for (Object obj : managerInterface.get()) {
-                System.out.println(obj);
+                System.out.println(obj.toString());
             }
         }
     }
+
     public void run() {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
@@ -60,7 +61,7 @@ public class Application {
                     scanner.nextLine();
                     break;
                 case 6:
-                    managerInterface = new ResidentialPropertyManager();
+                    managerInterface = new ResidentialPropertyManager(db);
                     consoleUI.printOptions(managerInterface);
                     options(scanner.nextInt());
                     scanner.nextLine();

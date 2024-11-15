@@ -45,4 +45,12 @@ public class ResidentialProperty extends Property implements Serializable {
     public void setGardenAvailability(boolean gardenAvailability) {
         this.gardenAvailability = gardenAvailability;
     }
+
+    @Override
+    public String toString() {
+        return "ResidentialProperty [numberOfBedrooms=" + numberOfBedrooms + ", garageAvailability=" + garageAvailability
+                + ", gardenAvailability=" + gardenAvailability + ", propertyId=" + this.getPropertyId()
+                + ", price=" + this.getPrice() + ", area=" + this.getArea() + ", status=" + this.getStatus() + ", owner=" + this.getOwner().getFullName()
+                + "]";
+    }
 }

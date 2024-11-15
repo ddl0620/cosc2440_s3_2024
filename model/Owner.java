@@ -49,4 +49,7 @@ public class Owner extends Person implements Serializable {
     public void addNewRentalAgreementMade(RentalAgreement ra) {
         this.rentalAgreementsMade.add(ra);
     }
+    public void addPropertyOwned(Property property) {
+        this.propertiesOwned.add(property);
+    }
 }
