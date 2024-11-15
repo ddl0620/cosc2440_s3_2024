@@ -30,5 +30,7 @@ public class CommercialProperty extends Property implements Serializable {
     public void setNumberOfParkingSpaces(int numberOfParkingSpaces) {
         this.numberOfParkingSpaces = numberOfParkingSpaces;
     }
-
+    public String toString() {
+        return "CommercialProperty [businessType=" + businessType + ", numberOfParkingSpaces=" + numberOfParkingSpaces + ", propertyId=" + this.getPropertyId() + ", price=" + this.getPrice() + ", area=" + this.getArea() + ", status=" + this.getStatus() + ", owner=" + this.getOwner().getFullName() + "]";
+    }
 }
